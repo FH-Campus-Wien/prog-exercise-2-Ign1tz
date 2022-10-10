@@ -9,15 +9,15 @@ public class App {
         System.out.print("Number 1: ");
         Scanner scan = new Scanner(System.in);
         float x = scan.nextFloat(), z = 0;
-        int a = 1;
+        int count = 1;
 
         while(x>0){
-            a++;
+            count++;
             if(x>z){
                 z = x;
             }
 
-            System.out.print("Number " + a + ": ");
+            System.out.print("Number " + count + ": ");
             x = scan.nextFloat();
         }
         if(z<=0){
@@ -33,9 +33,7 @@ public class App {
     public void stairs(){
         System.out.print("n: ");
         Scanner scan = new Scanner(System.in);
-        int b = scan.nextInt();
-        int z = 0;
-        int a = 0;
+        int b = scan.nextInt(), z = 0, a = 0;
 
         if(b>0) {
             for (int x = b; x > 0; x--) {
