@@ -16,6 +16,7 @@ public class App {
             if(x>z){
                 z = x;
             }
+
             System.out.print("Number " + a + ": ");
             x = scan.nextFloat();
         }
