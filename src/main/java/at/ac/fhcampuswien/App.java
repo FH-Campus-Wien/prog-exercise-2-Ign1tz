@@ -8,22 +8,22 @@ public class App {
     public void largestNumber(){
         System.out.print("Number 1: ");
         Scanner scan = new Scanner(System.in);
-        float x = scan.nextFloat(), z = 0;
+        float input = scan.nextFloat(), largest_num = 0;
         int count = 1;
 
-        while(x>0){
+        while(input>0){
             count++;
-            if(x>z){
-                z = x;
+            if(input>largest_num){
+                largest_num = input;
             }
 
             System.out.print("Number " + count + ": ");
-            x = scan.nextFloat();
+            input = scan.nextFloat();
         }
-        if(z<=0){
+        if(largest_num<=0){
             System.out.println("No number entered.");
         } else {
-            System.out.printf("The largest number is %.2f", z);
+            System.out.printf("The largest number is %.2f", largest_num);
             System.out.println();
         }
         // input your solution here
@@ -31,45 +31,43 @@ public class App {
 
     //todo Task 2
     public void stairs(){
+        // input your solution here
         System.out.print("n: ");
         Scanner scan = new Scanner(System.in);
-        int b = scan.nextInt(), z = 0, a = 0;
+        int in = scan.nextInt();
+        int out = 1, column = 1;
+        if(in > 0) {
+            for (int line = in; line > 0; line--) {
 
-        if(b>0) {
-            for (int x = b; x > 0; x--) {
-                a++;
-                for (int y = 0; y < a; y++) {
-                    z++;
-                    System.out.print(z + " ");
+                for (int count = 0; count < column; count++){
+                    System.out.print(out + " ");
+                    out++;
                 }
-                //z = 0;
                 System.out.println();
+                column++;
             }
         }else {
             System.out.println("Invalid number!");
         }
-
-        // input your solution here
     }
 
     //todo Task 3
     public void printPyramid(){
         final int KONST = 6;
-        int c = 1, x = 0, d = 1, e = 0;
+        int line = 1, count = 0, stars = 1, correcting_line = 0;
 
-        while(x<KONST) {
-            for (int a = 1; a <= d; a++) {
-                for (int b = 1; b <= KONST - c; b++) {
+        while(count < KONST) {
+            for (int num_stars = 1; num_stars <= stars; num_stars++) {
+                for (int spaces = 1; spaces <= KONST - line; spaces++) {
                     System.out.print(" ");
-                    //System.out.println(b);
                 }
                 System.out.print("*");
-                c = KONST;
+                line = KONST;
             }
-            e++;
-            x++;
-            c = 1+e;
-            d = d + 2;
+            correcting_line++;
+            count++;
+            line = 1 + correcting_line;
+            stars = stars + 2;
             System.out.println();
         }
         // input your solution here
@@ -79,72 +77,86 @@ public class App {
     public void printRhombus(){
         Scanner scan4 = new Scanner(System.in);
         System.out.print("h: ");
-        int h = scan4.nextInt();
+        final int num_input = scan4.nextInt();
         System.out.print("c: ");
-        char c = scan4.next().charAt(0);
-        int ascii = c;
-        int spaces = 1, count = 1, start = 0, d = 1, e = 0;
+        final char char_input = scan4.next().charAt(0);
+        final int LINE_RESET = 1; //resets linenumber to count down
+        int line_count = num_input, ascii_shift = 0, line = 0;
 
-
-        while(count < h){
-
-            if(count < h++/2){
-                for(int a = h-1; a>0; a--){
+        if(num_input%2 == 0){
+            System.out.println("Invalid number!");
+        }else {
+            while (0 < line_count) {
+                    line_count--;
+                for (int spaces = 1; spaces <= line_count / 2; spaces++) {
                     System.out.print(" ");
                 }
-                for(int b = 1; b <= d; b++){
-                    char out;
-                    System.out.print((char)ascii-e);
-
-                }
-                e++;
-                d = d+2;
+                asciiShift(char_input, ascii_shift, line);
+                line++;
+                ascii_shift = line;
+                line_count--;
+                System.out.println();
             }
-            count++;
+            line = LINE_RESET;
+            ascii_shift = line;
+            line_count = LINE_RESET;
+            for (int spaces = num_input / 2; spaces > 0; spaces--) {
+                for (int spacees = 1; spacees <= line_count; spacees++) {
+                    System.out.print(" ");
+                }
+                asciiShift(char_input, ascii_shift, line);
+                System.out.println();
+                line--;
+                ascii_shift = line;
+                line_count++;
+            }
         }
-        /*for(int a = 1; a < h; a++){
-            if(a>(h+1)/2){
-                for(int d = spaces; d <= (h+1)/2 - e; d++){
-                    System.out.print(" ");
-                }
-                System.out.print(c);
-            }
-            for(int b = spaces; b > 0; b--){
-                System.out.print(" ");
-            }
-            System.out.println();
-        }*/
-
         // input your solution here
+    }
+
+    private void asciiShift(char char_input, int ascii_shift, int line) {
+        int out_ascii;
+        for (int temp_ascii_shift_up = line; temp_ascii_shift_up > 0; temp_ascii_shift_up--) {
+            out_ascii = (int) char_input - ascii_shift;
+            System.out.print((char) out_ascii);
+            ascii_shift--;
+        }
+        System.out.print(char_input);
+        ascii_shift++;
+        for (int temp_ascii_shift_down = line; temp_ascii_shift_down > 0; temp_ascii_shift_down--) {
+            out_ascii = (int) char_input - ascii_shift;
+            System.out.print((char) out_ascii);
+            ascii_shift++;
+        }
     }
 
     //todo Task 5
     public void marks(){
         System.out.print("Mark 1: ");
         Scanner scan = new Scanner(System.in);
-        int a = 1, neg = 0, count = 0, x = scan.nextInt();
+        int mark_num = 1, neg = 0, count = 0, mark = scan.nextInt();
         double sum = 0, avr = 0;
-
-        while(x != 0){
-            if(x<0 || x>5){
+        
+        while(mark != 0){
+            if(mark < 0 || mark > 5){
                 System.out.println("Invalid mark!");
             } else {
-                if(x == 5){
+                if(mark == 5){
                     neg++;
                 }
-                a++;
+                mark_num++;
                 count++;
-                sum = x + sum;
+                sum = mark + sum;
             }
-            System.out.print("Mark " + a + ": ");
-            x = scan.nextInt();
+            System.out.print("Mark " + mark_num + ": ");
+            mark = scan.nextInt();
         }
         if(count != 0) {
             avr = sum / count;
         }
         System.out.printf("Average: %,.2f", avr);
         System.out.println();
-        System.out.println("Negative marks: "+ neg);
+        System.out.println("Negative marks: " + neg);
         //Math.;
         // input your solution here
     }
@@ -153,21 +165,20 @@ public class App {
     public void happyNumbers(){
         Scanner scan = new Scanner(System.in);
         System.out.print("n: ");
-        int x = scan.nextInt(), a,b,c,d = 0, stop = 0 ;
+        int input = scan.nextInt(), char1,char2,char3,new_num = 0;
 
-        while(d != 1){
-            a = x % 10;
-            b = x / 10 % 10;
-            c = x / 100;
-            d = a * a + b * b + c * c;
-            x = d;
-            if(d == 4 && stop >= 1) {
+        while(new_num != 1){
+            char1 = input % 10;
+            char2 = input / 10 % 10;
+            char3 = input / 100;
+            new_num = char1 * char1 + char2 * char2 + char3 * char3;
+            input = new_num;
+            if(new_num == 4 ) {
                 System.out.println("Sad number!");
-                d = 1;
-            }else if(d == 1 && stop >= 1) {
+                new_num = 1;
+            }else if(new_num == 1 ) {
                 System.out.println("Happy number!");
             }
-            stop++;
         }
         // input your solution here
     }
