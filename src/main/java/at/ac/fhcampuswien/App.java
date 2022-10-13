@@ -77,54 +77,52 @@ public class App {
     public void printRhombus(){
         Scanner scan4 = new Scanner(System.in);
         System.out.print("h: ");
-        final int num_input = scan4.nextInt();
+        final int NUM_INPUT = scan4.nextInt(), LINE_RESET = 1; //resets linenumber to count down;
         System.out.print("c: ");
-        final char char_input = scan4.next().charAt(0);
-        final int LINE_RESET = 1; //resets linenumber to count down
-        int line_count = num_input, ascii_shift = 0, line = 0;
+        final char CHAR_INPUT = scan4.next().charAt(0);
+        int line_count = NUM_INPUT, ascii_shift = 0, line = 0;
 
-        if(num_input%2 == 0){
+        if(NUM_INPUT%2 == 0){
             System.out.println("Invalid number!");
         }else {
-            while (0 < line_count) {
+            while (0 < line_count) {            //Upper pyramid
                     line_count--;
                 for (int spaces = 1; spaces <= line_count / 2; spaces++) {
                     System.out.print(" ");
                 }
-                asciiShift(char_input, ascii_shift, line);
+                asciiShift(CHAR_INPUT, ascii_shift, line); //calls on "asciiShift"
                 line++;
                 ascii_shift = line;
                 line_count--;
                 System.out.println();
             }
-            line = LINE_RESET;
-            ascii_shift = line;
+            line = NUM_INPUT / 2;
             line_count = LINE_RESET;
-            for (int spaces = num_input / 2; spaces > 0; spaces--) {
+            for (int spaces = NUM_INPUT / 2; spaces > 0; spaces--) {        //Lower Pyramid
                 for (int spacees = 1; spacees <= line_count; spacees++) {
                     System.out.print(" ");
                 }
-                asciiShift(char_input, ascii_shift, line);
-                System.out.println();
                 line--;
                 ascii_shift = line;
+                asciiShift(CHAR_INPUT, ascii_shift, line); //calls on "asciiShift"
+                System.out.println();
                 line_count++;
             }
         }
         // input your solution here
     }
 
-    private void asciiShift(char char_input, int ascii_shift, int line) {
+    private void asciiShift(char char_input, int ascii_shift, int line) { //prints the rhombus
         int out_ascii;
-        for (int temp_ascii_shift_up = line; temp_ascii_shift_up > 0; temp_ascii_shift_up--) {
-            out_ascii = (int) char_input - ascii_shift;
+        for (int temp_ascii_shift_up = line; temp_ascii_shift_up > 0; temp_ascii_shift_up--) { //left half
+            out_ascii = (int) char_input - ascii_shift; //caluclates ascii value of input
             System.out.print((char) out_ascii);
             ascii_shift--;
         }
-        System.out.print(char_input);
+        System.out.print(char_input); //middle column
         ascii_shift++;
-        for (int temp_ascii_shift_down = line; temp_ascii_shift_down > 0; temp_ascii_shift_down--) {
-            out_ascii = (int) char_input - ascii_shift;
+        for (int temp_ascii_shift_down = line; temp_ascii_shift_down > 0; temp_ascii_shift_down--) { //right half
+            out_ascii = (int) char_input - ascii_shift; //caluclates ascii value of input
             System.out.print((char) out_ascii);
             ascii_shift++;
         }
