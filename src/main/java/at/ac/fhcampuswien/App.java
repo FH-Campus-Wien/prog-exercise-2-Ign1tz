@@ -54,7 +54,6 @@ public class App {
     public void printPyramid(){
         final int KONST = 6;
         int line = 1, count = 0, stars = 1, correcting_line = 0;
-
         while(count < KONST) {
             for (int num_stars = 1; num_stars <= stars; num_stars++) {
                 for (int spaces = 1; spaces <= KONST - line; spaces++) {
