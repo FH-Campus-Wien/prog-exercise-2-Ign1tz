@@ -38,7 +38,6 @@ public class App {
         int out = 1, column = 1;
         if(in > 0) {
             for (int line = in; line > 0; line--) {
-
                 for (int count = 0; count < column; count++){
                     System.out.print(out + " ");
                     out++;
